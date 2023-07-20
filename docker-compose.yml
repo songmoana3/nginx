@@ -1,0 +1,14 @@
+version: '3'
+services:
+  nginx:
+    container_name: reverse_proxy
+    image: nginx:1.21.5-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+  web:
+    container_name: web_server
+    image: nginx:1.21.5-alpine
+    ports:
+        - 3000:3000
