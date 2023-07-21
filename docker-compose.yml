@@ -1,11 +1,20 @@
 version: "3.9"
 services:
+  reverse_proxy:
+    container_name: nginx_reverse_proxy
+    build: 
+      context: ./reverse_proxy
+      dockerfile: Dockerfile.proxy
+    ports:
+      - 80:80
+      - 443:443
+
   web:
     container_name: nginx_web
     build:
-      context: ./              # dockerfile 위치
-      dockerfile: Dockerfile   # 개인 docker file
+      context: ./web                # dockerfile 위치
+      dockerfile: Dockerfile.web    # 개인 docker file
     volumes:
-      - ./:/app
+      - ./web:/app/web
     ports:
-      - 80:80
+      - 3000:3000
