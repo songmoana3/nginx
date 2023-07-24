@@ -6,10 +6,8 @@ services:
       context: ./reverse_proxy
       dockerfile: Dockerfile.proxy
     ports:
-      - 80:80
-      - 443:443
-    # env_file:
-    #   - .env
+    - 443:443
+
 
 
   web:
@@ -20,4 +18,4 @@ services:
     volumes:
       - ./web:/app/web
     ports:
-      - 8080:80
+      - 80:80
