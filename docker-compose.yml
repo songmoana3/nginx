@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   reverse_proxy:
-    container_name: nginx_reverse_proxy
+    container_name: nginx-reverse-proxy
     build: 
       context: ./reverse_proxy
       dockerfile: Dockerfile.proxy
@@ -16,7 +16,7 @@ services:
 
 
   web:
-    container_name: nginx_web
+    container_name: nginx-web
     build:
       context: ./web                # dockerfile 위치
       dockerfile: Dockerfile.web    # 개인 docker file
