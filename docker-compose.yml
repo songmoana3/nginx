@@ -5,15 +5,12 @@ services:
     build: 
       context: ./reverse_proxy
       dockerfile: Dockerfile.proxy
-    
-    # volumes:
-    #   - ./data/certbot/conf:/etc/letsencrypt
-    #   - ./data/certbot/www:/var/www/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
     ports:
     - 80:80
     - 443:443
-
-
 
   web:
     container_name: nginx-web
@@ -25,9 +22,10 @@ services:
     ports:
       - 8080:8080
 
-  # certbot:
-  #   image: certbot/certbot
-  #   restart: unless-stopped
-  #   volumes:
-  #     - ./data/certbot/conf:/etc/letsencrypt
-  #     - ./data/certbot/www:/var/www/certbot
+  certbot:
+    container_name: nginx-certbot
+    image: certbot/certbot
+    restart: always
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
